@@ -12,7 +12,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.basics.model.BlogUserId;
 import com.basics.model.User;
+import com.basics.model.VisitRequest;
+import com.basics.model.Visiting;
+import com.basics.repo.VisitRepo;
 import com.basics.service.UserService;
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -23,9 +27,19 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
+	@Autowired
+	VisitRepo visitRepo;
+
 	@PostMapping("/users")
 	public void addUser(@RequestBody User user) {
 		userService.addUser(user);
+	}
+	
+	@PostMapping("/visited")
+	public void addView(@RequestBody VisitRequest visit) {
+        BlogUserId id = new BlogUserId(visit.getBlogId(), visit.getUserId());
+        Visiting visiting = new Visiting(id, visit.getRating());
+        visitRepo.save(visiting);
 	}
 	
 	@PostMapping("/login")

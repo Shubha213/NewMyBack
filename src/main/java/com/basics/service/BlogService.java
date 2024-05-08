@@ -28,7 +28,7 @@ public class BlogService {
 		try {
 			return blogRepo.findById(blogid).get();			
 		} catch (NoSuchElementException e) {
-			Blog blg = new Blog(0, 0, null, "<h1>No Blog Found</h1>", null, 0, 0, 0);
+			Blog blg = new Blog(0, 0, null, "<h1>No Blog Found</h1>", null, 0, 0, null);
 			// TODO: handle exception
 			return blg;
 		}

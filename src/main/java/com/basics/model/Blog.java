@@ -23,7 +23,8 @@ public class Blog {
 	private String tags;
 	private int views;
 	private int likes;
-	private int bid;
+    @Column(name = "company")
+	private String company;
 	
 	public int getBlog_id() {
 		return blogId;
@@ -67,14 +68,14 @@ public class Blog {
 	public void setLikes(int likes) {
 		this.likes = likes;
 	}
-	public int getBid() {
-		return bid;
+	public String getCompany() {
+		return company;
 	}
-	public void setBid(int bid) {
-		this.bid = bid;
+	public void setCompany(String company) {
+		this.company = company;
 	}
-	public Blog(int blog_id, int user_id, String blog_title, String blog_text, String tags, int views, int likes,
-			int bid) {
+	
+	public Blog(int blog_id, int user_id, String blog_title, String blog_text, String tags, int views, int likes, String company) {
 		super();
 		this.blogId = blog_id;
 		this.userId = user_id;
@@ -83,7 +84,7 @@ public class Blog {
 		this.tags = tags;
 		this.views = views;
 		this.likes = likes;
-		this.bid = bid;
+		this.company = company;
 	}
 	
 	Blog(){

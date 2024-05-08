@@ -12,7 +12,7 @@ public interface BlogRepo extends JpaRepository<Blog, Long>{
 
 	List<Blog> getAllByUserId(int userid);
 
-	List<Blog> getAllByBid(int userid);
+	List<Blog> getAllByBlogId(int userid);
 
 	List<Blog> findByTagsContaining(String tags);
 
