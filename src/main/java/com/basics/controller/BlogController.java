@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.basics.model.Blog;
 import com.basics.service.BlogService;
+import com.basics.service.FlaskService;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -21,6 +22,9 @@ public class BlogController {
 	
 	@Autowired
 	BlogService blogService;
+	
+	@Autowired
+	FlaskService flaskService;
 	
 	@GetMapping("/getAllBlogs")
 	public List<Blog> getAllBlogs(){
@@ -69,4 +73,13 @@ public class BlogController {
 	public boolean updateViews(@PathVariable long blog_id) {
 		return blogService.upadteViews(blog_id);
 	}
+	
+    @PostMapping("/search-similar-blogs")
+    public void searchSimilarBlogs(@RequestBody String sentence) {
+        // Call the FlaskService method to search for similar blogs based on the sentence
+//        List<Blog> similarBlogs = flaskService.callFlaskEndpoint(sentence);
+        System.out.println("edcasf" + " " + sentence);
+//    	return similarBlogs;
+        flaskService.callFlaskEndpoint(sentence);
+    }
 }
